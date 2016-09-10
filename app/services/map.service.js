@@ -4,7 +4,7 @@ angular.module('myApp')
         // Methods
         MapService.init = init;
         MapService.getMap = getMap;
-
+        MapService.getLocation = getLocation;
         MapService.init();
 
         function init() {
@@ -14,14 +14,22 @@ angular.module('myApp')
 		    });
 		    MapService.mapTypes = MapService.platform.createDefaultLayers();
         }
+        function getLocation() {
+          if (navigator.geolocation) {
+            return navigator.geolocation.getCurrentPosition(getMap);
+          } else {
+            return null;
+            //mapContainer.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
 
-        function getMap() {
+        function getMap(position) {
         	return new H.Map(
 		        document.getElementById('mapContainer'),
 		        MapService.mapTypes.normal.map,
 		        {
 		            zoom: 10,
-		            center: { lat: 52.5, lng: 13.4 }
+		            center: { lat: position.coords.latitude, lng: position.coords.longitude }
 		        });
         }
 
