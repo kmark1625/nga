@@ -12,5 +12,6 @@ angular.module('myApp.view1', ['ngRoute'])
 .controller('View1Ctrl', ['MapService', function(MapService) {
     var vm = this;
 
+    vm.location = 
     vm.map = MapService.getMap();
 }]);
