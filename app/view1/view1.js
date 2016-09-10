@@ -12,17 +12,5 @@ angular.module('myApp.view1', ['ngRoute'])
 .controller('View1Ctrl', ['MapService', function(MapService) {
     var vm = this;
 
-    vm.platform = new H.service.Platform({
-        'app_id': 't6ldZeZcFyWw3GWaYi6G',
-        'app_code': 'ogKY0Ip_sKJro3CZe28-DA'
-    });
-
-    vm.mapTypes = vm.platform.createDefaultLayers();
-    vm.map = new H.Map(
-        document.getElementById('mapContainer'),
-        vm.mapTypes.normal.map,
-        {
-            zoom: 10,
-            center: { lat: 52.5, lng: 13.4 }
-        });
+    vm.map = MapService.getMap();
 }]);
