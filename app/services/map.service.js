@@ -1,6 +1,6 @@
-angular.module(myApp)
+angular.module('myApp')
     .factory('MapService', function() {
-        var MapService;
+        var MapService = {};
 
         return MapService;
     });
