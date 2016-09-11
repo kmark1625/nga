@@ -3,6 +3,7 @@ angular.module('myApp')
         var MapService = {};
 
         // Methods
+        MapService.configureSettings = configureSettings;
         MapService.init = init;
         MapService.getMap = getMap;
         MapService.getLocation = getLocation;
@@ -30,13 +31,22 @@ angular.module('myApp')
         }
 
         function getMap(position) {
-        	MapService.map = new H.Map(
+        	var map = new H.Map(
 		        document.getElementById('mapContainer'),
 		        MapService.mapTypes.normal.map,
 		        {
 		            zoom: 10,
 		            center: { lat: position.coords.latitude, lng: position.coords.longitude }
 		        });
+            
+            // Enable the map event system
+	        var mapevents = new H.mapevents.MapEvents(map);
+
+	        // Enable map interaction (pan, zoom, pinch-to-zoom)
+	        var behavior = new H.mapevents.Behavior(mapevents);
+
+	        // Enable the default UI
+	        var ui = H.ui.UI.createDefault(map, MapService.mapTypes);
         }
 
         return MapService;
