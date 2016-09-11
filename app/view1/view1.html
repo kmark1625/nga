@@ -23,7 +23,9 @@
     <div ng-if="vm.viewName === 'Direct'">
         <img class='img-header' src="/assets/icon-direct.png">
         <p class="margin-0 text-center">Just get me to safety</p>
+        
         <input style='margin-left: 27%; margin-bottom: 7px;' placeholder='enter a custom location (optional)'></input>
+    
     </div>
 
     <div ng-if="vm.viewName ==='Waypoint'">
@@ -39,6 +41,14 @@
     <div ng-if="vm.viewName === 'Disaster Severity'">
         <img class='img-header' src="/assets/icon-share-journey-12.png">
         <p class="margin-0 text-center">Latest updates on severity</p>
+         <p class='text-center' style='margin-bottom: 0px;'><strong>Square miles affected </strong></p>
+        
+   <p class='text-center' style='margin-bottom: 100px;'><strong> 55 </strong></p>
+        
+    <p class='text-center' style='margin-bottom: 0px;'><strong> Percentage power blackout </strong></p>
+    <p class='text-center' style='margin-bottom: 0px;'><strong> 35 </strong></p>
+    
+        
     </div>
 
     <div class='container' ng-if='vm.viewName !== "Disaster Severity"'>
@@ -49,7 +59,8 @@
             <img ng-class="{ 'success': vm.viewName === 'Custom' }" ng-click='vm.changeView("Custom")' class='nav-btn' src='/assets/icon-direct.png'>
             <img ng-class="{ 'success': vm.viewName === 'Direct' }" ng-click='vm.changeView("Direct")' class='nav-btn' src='/assets/icon-waypoint.png'>
             <img ng-class="{ 'success': vm.viewName === 'Waypoint' }" ng-click='vm.changeView("Waypoint")' class='nav-btn' src='/assets/icon-alerts.png'>
-            <img ng-class="{ 'success': vm.viewName === 'Disaster Severity' }" ng-click='vm.changeView("Disaster Severity")' class='nav-btn' src='/assets/icon-share-journey-12.png'>
+            <img ng-class="{ 'success': vm.viewName === 'Disaster Severity' }" ng-click='vm.changeView("Disaster Severity")' class='nav-btn'
+            src='/assets/icon-share-journey-12.png'>
         </span>
     </div>
 </div>
