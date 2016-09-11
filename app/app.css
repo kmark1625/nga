@@ -29,8 +29,20 @@
   padding: 0;
 }
 
-.nav-btn {
-    width: 25%;
-    height: 100px;
-    border: 1px solid black;
+.text-center {
+    text-align: center;
 }
+
+.margin-0 {
+    margin: 0px;
+}
+
+.nav-btn {
+    width: 23%;
+    margin:0px;
+    height: 100px;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
