@@ -138,7 +138,7 @@ angular.module('myApp')
 		//add Geocoder Release information if not already done
 
 
-		var searchText = "Chicago US";
+		var searchText = "The Loop Chicago US";
 		MapService.geocoder.geocode({
 			searchText: searchText,
 			'additionalData': 'IncludeShapeLevel,default'
