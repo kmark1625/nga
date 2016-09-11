@@ -24,13 +24,18 @@ angular.module('myApp')
         }
 
         function getMap(position) {
-        	return new H.Map(
+        	var map = new H.Map(
 		        document.getElementById('mapContainer'),
 		        MapService.mapTypes.normal.map,
 		        {
 		            zoom: 10,
 		            center: { lat: position.coords.latitude, lng: position.coords.longitude }
+                
+
 		        });
+            var mapevents = new H.mapevents.MapEvents(map);
+            var behavior = new H.mapevents.Behavior(mapevents);
+            var ui = H.ui.UI.createDefault(map, MapService.mapTypes);
         }
 
         return MapService;
