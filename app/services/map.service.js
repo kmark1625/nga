@@ -76,12 +76,15 @@ angular.module('myApp')
           }
 
           function visualize(result){
-            var items = result.results.items
+            var items = result.results.items;
+            var selectedCoord; 
             for(var i = 0; i < items.length; i++)
             {
               var coordinates = items[i].position
               addMarker(coordinates)
             }
+            selectedCoor = coordinates;
+            calculateRoute(selectedCoor);
           }
 
           function addMarker(position, icon, contentDiv)
@@ -94,10 +97,16 @@ angular.module('myApp')
             //add 'tap' event listener, that opens info bubble, to the group
           }
 
-          function calculateRoute(){
+          function calculateRoute(selectedCoor){
             var string = MapService.position.coords.latitude + "," + MapService.position.coords.longitude;
             var newPos = {'lat': MapService.position.coords.latitude + .005, 'lon': MapService.position.coords.longitude + .01}
             var string2 = newPos.lat + ',' + newPos.lon;
+            if (selectedCoor) {
+                console.log('selectedCoor');
+                console.log(selectedCoor);
+                newPos = {'lat': selectedCoor[0], 'lon': selectedCoor[1] };
+                string2 = newPos.lat + ',' + newPos.lon;
+            }
             var calculateRouteParams = {
               'waypoint0' : '41.883404,-87.624454',
               'waypoint1' : string2,
