@@ -37,16 +37,13 @@ angular.module('myApp')
 		        {
 		            zoom: 10,
 		            center: { lat: position.coords.latitude, lng: position.coords.longitude }
+                
+
 		        });
-            
-            // Enable the map event system
-	        var mapevents = new H.mapevents.MapEvents(map);
 
-	        // Enable map interaction (pan, zoom, pinch-to-zoom)
-	        var behavior = new H.mapevents.Behavior(mapevents);
-
-	        // Enable the default UI
-	        var ui = H.ui.UI.createDefault(map, MapService.mapTypes);
+            var mapevents = new H.mapevents.MapEvents(map);
+            var behavior = new H.mapevents.Behavior(mapevents);
+            var ui = H.ui.UI.createDefault(map, MapService.mapTypes);
         }
 
         return MapService;
