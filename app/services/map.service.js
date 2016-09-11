@@ -3,8 +3,8 @@ angular.module('myApp')
         var MapService = {};
 
         // Methods
-        MapService.configureSettings = configureSettings;
         MapService.init = init;
+        MapService.drawPath = drawPath;
         MapService.getMap = getMap;
         MapService.getLocation = getLocation;
         MapService.placesSearch = placesSearch;
@@ -17,17 +17,23 @@ angular.module('myApp')
 		        'app_id': 't6ldZeZcFyWw3GWaYi6G',
 		        'app_code': 'ogKY0Ip_sKJro3CZe28-DA'
 		    });
-        MapService.router = MapService.platform.getRoutingService()
-		    MapService.mapTypes = MapService.platform.createDefaultLayers();
-        MapService.releaseRoutingShown = false;
-        MapService.geocoder = MapService.platform.getGeocodingService();
-        MapService.group = new H.map.Group();
-        MapService.maxCount = 0;
-
+	        MapService.router = MapService.platform.getRoutingService()
+			MapService.mapTypes = MapService.platform.createDefaultLayers();
+	        MapService.releaseRoutingShown = false;
+	        MapService.geocoder = MapService.platform.getGeocodingService();
+	        MapService.group = new H.map.Group();
+	        MapService.maxCount = 0;
         }
-
-        function configureSettings() {
-
+        
+        function drawPath() {
+        	var displayReady = function(e)
+            {
+				MapService.map.removeEventListener('mapviewchangeend',displayReady);
+				MapService.calculateRoute();
+            };
+            MapService.map.addEventListener("mapviewchangeend", displayReady);
+            var zoom = MapService.map.getZoom();
+            MapService.map.setZoom(zoom + .01);
         }
 
         function getLocation() {
@@ -45,23 +51,16 @@ angular.module('myApp')
 		        {
 		            zoom: 10,
 		            center: { lat: position.coords.latitude, lng: position.coords.longitude }
-
-
 		        });
 
             MapService.position = position
             var mapevents = new H.mapevents.MapEvents(MapService.map);
             var behavior = new H.mapevents.Behavior(mapevents);
             var ui = H.ui.UI.createDefault(MapService.map, MapService.mapTypes);
-            var displayReady = function(e)
-            {
-              MapService.map.removeEventListener('mapviewchangeend',displayReady);
-              MapService.calculateRoute();
-            };
-            MapService.map.addEventListener("mapviewchangeend", displayReady)
-            MapService.placesSearch(MapService.platform)
+
             MapService.geocode();
         }
+
         // @param {H.service.platform}
           function placesSearch (platform){
             var string = MapService.position.coords.latitude + "," + MapService.position.coords.longitude
@@ -70,21 +69,21 @@ angular.module('myApp')
                 at: string,
                 q: 'gas station'};
             placesService.search(parameters, function (result){
-               console.log(result)
                visualize(result)
             }, function(error) {
               console.log(error);
             });
           }
+
           function visualize(result){
             var items = result.results.items
-            console.log(items)
             for(var i = 0; i < items.length; i++)
             {
               var coordinates = items[i].position
               addMarker(coordinates)
             }
           }
+
           function addMarker(position, icon, contentDiv)
           {
             var positionValue = {lat:position[0], lng:position[1]};
@@ -94,11 +93,14 @@ angular.module('myApp')
             //marker.setData(contentDiv.innerHTML);
             //add 'tap' event listener, that opens info bubble, to the group
           }
+
           function calculateRoute(){
-            var string = MapService.position.coords.latitude + "," + MapService.position.coords.longitude
+            var string = MapService.position.coords.latitude + "," + MapService.position.coords.longitude;
+            var newPos = {'lat': MapService.position.coords.latitude + .001, 'lon': MapService.position.coords.longitude + .01}
+            var string2 = newPos.lat + ',' + newPos.lon;
             var calculateRouteParams = {
-              'waypoint0' : string,
-              'waypoint1' : '41.888404,-87.624454',
+              'waypoint0' : '41.888404,-87.624454',
+              'waypoint1' : string2,
               'mode': 'fastest;car;traffic:disabled',
               'representation' : 'display'
             },
@@ -133,6 +135,7 @@ angular.module('myApp')
 		}
 		MapService.router.calculateRoute(calculateRouteParams, onResult, onError);
 	}
+	
   function geocode()
 	{
 		//add Geocoder Release information if not already done
@@ -243,7 +246,6 @@ angular.module('myApp')
 			}
 			MapService.map.addObject(MapService.group);
 			MapService.map.setViewBounds(MapService.group.getBounds());
-			//map.setZoom(12);
 
 	}
   //end create polygon
