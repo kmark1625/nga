@@ -6,7 +6,7 @@
             <p class='text-center margin-0' style='padding-top: 8px'><strong>{{ vm.viewName }}</strong></p>
         </div>
 
-        <div ng-if="vm.viewName === 'Custom'">
+        <div ng-if="vm.viewName === ' '">
             <div class='container warning' style='background-image:
             url(/assets/Hugo_IR.jpg); background-size: 100%; height 150px; color: white;
             margin-bottom:0px'>
@@ -44,29 +44,73 @@
             </select>
         </div>
 
-    <div ng-if="vm.viewName === 'Disaster Severity'">
+        <div ng-if="vm.viewName === 'Disaster Severity'">
+            <img class='img-header' src="/assets/icon-alerts.png">
+            <p class="margin-0 text-center">Latest updates on severity</p>
+            <div style='background-color: #D3D3D3'>
+                <p class='margin-0' style='margin-left: 20px;'>Warning active another 0 days, 3 hours, 4
+                minutes</p>
+            </div>
+            <div style='width: 100%; height: 40px; background-color: black; color:
+            white;'>
+                <button ng-click='vm.changeView(" ")' class='text-center margin-0'
+                style='width: 100%; height: 100%; background-color: black;
+                border: 0px'><p class='margin-0'>LEAVE NOW</p></button>
+            </div>
+            <div class='description'>
+                <p class='summary-description'>Most affected counties</p>
+                <p class='full-description'>Bryan, Bullock, Camdem, Effingham,
+                Glynn, Liberty, McIntosh, Screven, Wayne, ...</p>
+            </div>
+            <div class='description'>
+                <p class='summary-description'>Precipitation</p>
+                <p class='full-description'>Rain, 2" in past 24 hours</p>
+            </div>
+            <div class='description'>
+                <p class='summary-description'>Wind speed</p>
+                <p class='full-description'>10 MPH, NW</p>
+            </div>
+            <div class='description'>
+                <p class='summary-description'>Potential power outage in
+                counties:</p>
+                <p class='full-description'>Camden, Effingham, Glynn</p>
+            </div>
+        </div>
+
+    <div ng-if="vm.viewName === 'Notify'">
         <img class='img-header' src="/assets/icon-share-journey-12.png">
         <p class="margin-0 text-center">Latest updates on severity</p>
          <p class='text-center' style='margin-bottom: 0px;'><strong>Square miles affected </strong></p>
         
-   <p class='text-center' style='margin-bottom: 100px;'><strong> 55 </strong></p>
+   <p class='text-center' style='margin-bottom: 15px;'><strong> 55 </strong></p>
         
     <p class='text-center' style='margin-bottom: 0px;'><strong> Percentage power blackout </strong></p>
     <p class='text-center' style='margin-bottom: 0px;'><strong> 35 </strong></p>
-    
-        
+
+        <div>
+            <textarea ng-model='vm.helpText' style='width: 300px; height: 100px;
+            margin-left: 20px; border: 1px solid black;'
+            placeholder='Please enter the kind of help you need'></textarea>
+            <button class='btn-primary' style='margin-left: 33%'
+            ng-click='vm.requestHelp()'>Request Help</button>
+        </div>
     </div>
 
-        <div class='container' ng-hide='vm.viewName === "Disaster Severity"'>
+        <div class='container' ng-hide='vm.viewName === "Disaster Severity" ||
+        vm.viewName === "Notify"'>
             <div style='width: 100%; height: 375px' id='mapContainer'></div>
         </div>
     </div>
     <div class='container'>
         <span>
-            <img ng-class="{ 'success': vm.viewName === 'Custom' }" ng-click='vm.changeView("Custom")' class='nav-btn' src='/assets/icon-direct.png'>
-            <img ng-class="{ 'success': vm.viewName === 'Direct' }" ng-click='vm.changeView("Direct")' class='nav-btn' src='/assets/icon-waypoint.png'>
-            <img ng-class="{ 'success': vm.viewName === 'Waypoint' }" ng-click='vm.changeView("Waypoint")' class='nav-btn' src='/assets/icon-alerts.png'>
-            <img ng-class="{ 'success': vm.viewName === 'Disaster Severity' }" ng-click='vm.changeView("Disaster Severity")' class='nav-btn'
+            <img ng-class="{ 'success': vm.viewName === 'Direct' }"
+            ng-click='vm.changeView("Direct")' class='nav-btn' src='/assets/icon-direct.png'>
+            <img ng-class="{ 'success': vm.viewName === 'Waypoint' }"
+            ng-click='vm.changeView("Waypoint")' class='nav-btn' src='/assets/icon-waypoint.png'>
+            <img ng-class="{ 'success': vm.viewName === 'Disaster Severity' }"
+            ng-click='vm.changeView("Disaster Severity")' class='nav-btn' src='/assets/icon-alerts.png'>
+            <img ng-class="{ 'success': vm.viewName === 'Notify' }"
+            ng-click='vm.changeView("Notify")' class='nav-btn'
             src='/assets/icon-share-journey-12.png'>
         </span>
     </div>

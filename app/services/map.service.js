@@ -96,10 +96,10 @@ angular.module('myApp')
 
           function calculateRoute(){
             var string = MapService.position.coords.latitude + "," + MapService.position.coords.longitude;
-            var newPos = {'lat': MapService.position.coords.latitude + .001, 'lon': MapService.position.coords.longitude + .01}
+            var newPos = {'lat': MapService.position.coords.latitude + .005, 'lon': MapService.position.coords.longitude + .01}
             var string2 = newPos.lat + ',' + newPos.lon;
             var calculateRouteParams = {
-              'waypoint0' : '41.888404,-87.624454',
+              'waypoint0' : '41.883404,-87.624454',
               'waypoint1' : string2,
               'mode': 'fastest;car;traffic:disabled',
               'representation' : 'display'
@@ -127,8 +127,9 @@ angular.module('myApp')
 					}
 				});
 
-				MapService.map.addObject(polyline);
-				 MapService.map.setViewBounds(polyline.getBounds(), true);
+			MapService.map.addObject(polyline);
+			MapService.map.setViewBounds(polyline.getBounds(), true);
+			var position = [MapService.position.coords.latitude, MapService.position.coords.longitude];
 		},
 		onError = function(error) {
 			console.log(error);

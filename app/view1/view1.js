@@ -14,8 +14,9 @@ angular.module('myApp.view1', ['ngRoute'])
     vm.changeView = changeView;
     vm.setWaypoints = setWaypoints;
     vm.drawPath = drawPath;
+    vm.requestHelp = requestHelp;
 
-    vm.viewName = "Custom";
+    vm.viewName = " ";
     vm.waypoint;
     
     MapService.getLocation();
@@ -32,5 +33,9 @@ angular.module('myApp.view1', ['ngRoute'])
         if (vm.waypoint) {
             MapService.placesSearch(MapService.platform);
         }
+    }
+
+    function requestHelp() {
+        alert('Sending help to your location!');
     }
 }]);
