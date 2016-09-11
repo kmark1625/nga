@@ -1,4 +1,7 @@
 <div style='width: 375px; height: 667px; border: 1px solid black'>
+    <div style='width: 100%; height: 40px; background-color: #D3D3D3;'>
+        <p class='text-center margin-0'><strong>{{ vm.viewName }}</strong></p>
+    </div>
     <div class='container warning' style='background-image:
     url(/assets/Hugo_IR.jpg); background-size: 100%; height 150px; color: white;
     margin-bottom:0px'>
@@ -17,10 +20,10 @@
     </div>
     <div class='container'>
         <span>
-            <img class='nav-btn' src='/assets/icon-direct.png'>
-            <img class='nav-btn' src='/assets/icon-waypoint.png'>
-            <img class='nav-btn' src='/assets/icon-alerts.png'>
-            <img class='nav-btn' src='/assets/icon-share-journey-12.png'>
+            <img ng-class="{ 'success': vm.viewName === 'Custom' }" ng-click='vm.changeView("Custom")' class='nav-btn' src='/assets/icon-direct.png'>
+            <img ng-class="{ 'success': vm.viewName === 'Direct' }" ng-click='vm.changeView("Direct")' class='nav-btn' src='/assets/icon-waypoint.png'>
+            <img ng-class="{ 'success': vm.viewName === 'Waypoint' }" ng-click='vm.changeView("Waypoint")' class='nav-btn' src='/assets/icon-alerts.png'>
+            <img ng-class="{ 'success': vm.viewName === 'Disaster Severity' }" ng-click='vm.changeView("Disaster Severity")' class='nav-btn' src='/assets/icon-share-journey-12.png'>
         </span>
     </div>
 </div>
