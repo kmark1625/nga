@@ -46,3 +46,12 @@
     border-bottom: 1px solid black;
 }
 
+.success {
+    background-color: #33FF33;
+}
+
+.img-header {
+    width: 100px;
+    height: 95px;
+    margin-left: 35%;
+}
