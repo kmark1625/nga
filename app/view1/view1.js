@@ -29,9 +29,9 @@ angular.module('myApp.view1', ['ngRoute'])
         MapService.drawPath();
     }
 
-    function setWaypoints() {
+    function setWaypoints(waypointType) {
         if (vm.waypoint) {
-            MapService.placesSearch(MapService.platform);
+            MapService.placesSearch(MapService.platform, waypointType);
         }
     }
 
