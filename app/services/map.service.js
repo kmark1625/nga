@@ -95,10 +95,12 @@ angular.module('myApp')
           }
 
           function calculateRoute(){
-            var string = MapService.position.coords.latitude + "," + MapService.position.coords.longitude
+            var string = MapService.position.coords.latitude + "," + MapService.position.coords.longitude;
+            var newPos = {'lat': MapService.position.coords.latitude + .001, 'lon': MapService.position.coords.longitude + .01}
+            var string2 = newPos.lat + ',' + newPos.lon;
             var calculateRouteParams = {
-              'waypoint0' : string,
-              'waypoint1' : '41.888404,-87.624454',
+              'waypoint0' : '41.888404,-87.624454',
+              'waypoint1' : string2,
               'mode': 'fastest;car;traffic:disabled',
               'representation' : 'display'
             },
@@ -244,7 +246,6 @@ angular.module('myApp')
 			}
 			MapService.map.addObject(MapService.group);
 			MapService.map.setViewBounds(MapService.group.getBounds());
-			//map.setZoom(12);
 
 	}
   //end create polygon
