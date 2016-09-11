@@ -1,30 +1,35 @@
 <div style='width: 375px; height: 667px; border: 1px solid black'>
     <div style='border: 3px solid red'>
         <div style='width: 100%; height: 40px; background-color: #D3D3D3;'>
-            <p class='text-center margin-0'><strong>{{ vm.viewName }}</strong></p>
+            <p style='float: left; position: relative; left: 16px; bottom: 7px;
+            color: gray'><strong>Ex.it</strong></p>
+            <p class='text-center margin-0' style='padding-top: 8px'><strong>{{ vm.viewName }}</strong></p>
         </div>
 
         <div ng-if="vm.viewName === 'Custom'">
             <div class='container warning' style='background-image:
             url(/assets/Hugo_IR.jpg); background-size: 100%; height 150px; color: white;
             margin-bottom:0px'>
-                <div style='padding: 10px' class='text-center'>
-                    <p><strong>Hurrican warning in your area until Weds, Sep 10 at
-                6:15pm.</strong></p>
-                    <p class='text-center' style='margin-bottom: 0px;'><strong>Details ></strong></p>
+                <div style='padding: 10px; padding-left: 20%; padding-right: 20%' class='text-center'>
+                    <p><strong>Hurricane</strong> <span style='font-size: .8em'>warning in your area until
+                    Weds, Sep 10 at 6:15pm.</span></p>
+                    <p class='text-center' style='margin-bottom:
+                    0px;'>Details > </p>
                 </div>
             </div>
-            <div style='width: 100%; height: 30px; background-color: black; color:
+            <div style='width: 100%; height: 40px; background-color: black; color:
             white;'>
-                <button ng-click='vm.drawPath()' class='text-center margin-0' style='width: 100%;
-                background-color: black;'>Leave now</button>
+                <button ng-click='vm.drawPath()' class='text-center margin-0'
+                style='width: 100%; height: 100%; background-color: black;
+                border: 0px'><p class='margin-0'>LEAVE NOW</p></button>
             </div>
         </div>
 
         <div ng-if="vm.viewName === 'Direct'">
             <img class='img-header' src="/assets/icon-direct.png">
             <p class="margin-0 text-center">Just get me to safety</p>
-            <input style='margin-left: 27%; margin-bottom: 7px;' placeholder='enter a custom location (optional)'></input>
+            <input style='margin-left: 15%; margin-bottom: 7px; border: 1px
+            solid gray; width: 250px; font-size: 14px;' placeholder='or enter a custom location (optional)'></input>
         </div>
 
         <div ng-if="vm.viewName ==='Waypoint'">

@@ -1,4 +1,8 @@
 /* app css stylesheet */
+p {
+    font-family: 'Montserrat';
+
+}
 
 .menu {
   list-style: none;
@@ -41,9 +45,6 @@
     width: 23%;
     margin:0px;
     height: 85px;
-    border-right: 1px solid black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
 }
 
 .success {
@@ -53,5 +54,9 @@
 .img-header {
     width: 60px;
     height: 60px;
-    margin-left: 45%;
+    margin-left: 34%;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
 }
