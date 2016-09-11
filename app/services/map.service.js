@@ -65,18 +65,28 @@ angular.module('myApp')
                 at: string,
                 q: 'gas station'};
             placesService.search(parameters, function (result){
-              console.log(result);
+               console.log(result)
+               visualize(result)
             }, function(error) {
               console.log(error);
             });
+          }
+          function visualize(result){
+            var items = result.results.items
+            console.log(items)
+            for(var i = 0; i < items.length; i++)
+            {
+              var coordinates = items[i].position
+              addMarker(coordinates)
+            }
           }
           function addMarker(position, icon, contentDiv)
           {
             var positionValue = {lat:position[0], lng:position[1]};
             var marker = new H.map.Marker(positionValue);
-            map.addObject(marker);
-            map.setCenter(positionValue);
-            marker.setData(contentDiv.innerHTML);
+            MapService.map.addObject(marker);
+            MapService.map.setCenter(positionValue);
+            //marker.setData(contentDiv.innerHTML);
             //add 'tap' event listener, that opens info bubble, to the group
           }
           function calculateRoute(){
