@@ -1,10 +1,12 @@
 angular.module('myApp')
     .factory('MapService', function() {
         var MapService = {};
+
         // Methods
         MapService.init = init;
         MapService.getMap = getMap;
         MapService.getLocation = getLocation;
+
         MapService.init();
 
         function init() {
@@ -14,17 +16,21 @@ angular.module('myApp')
 		    });
 		    MapService.mapTypes = MapService.platform.createDefaultLayers();
         }
+
+        function configureSettings() {
+            
+        }
+
         function getLocation() {
-          if (navigator.geolocation) {
-            return navigator.geolocation.getCurrentPosition(getMap);
-          } else {
-            return null;
-            //mapContainer.innerHTML = "Geolocation is not supported by this browser.";
-          }
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(MapService.getMap);
+            } else {
+                console.log('failed to load current location');
+            }
         }
 
         function getMap(position) {
-        	return new H.Map(
+        	MapService.map = new H.Map(
 		        document.getElementById('mapContainer'),
 		        MapService.mapTypes.normal.map,
 		        {
