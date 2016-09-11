@@ -62,12 +62,12 @@ angular.module('myApp')
         }
 
         // @param {H.service.platform}
-          function placesSearch (platform){
+          function placesSearch (platform, waypointType){
             var string = MapService.position.coords.latitude + "," + MapService.position.coords.longitude
             var placesService = platform.getPlacesService(),
               parameters = {
                 at: string,
-                q: 'gas station'};
+                q: waypointType};
             placesService.search(parameters, function (result){
                visualize(result)
             }, function(error) {
