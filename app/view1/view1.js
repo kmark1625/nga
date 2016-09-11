@@ -12,12 +12,25 @@ angular.module('myApp.view1', ['ngRoute'])
 .controller('View1Ctrl', ['MapService', function(MapService) {
     var vm = this;
     vm.changeView = changeView;
+    vm.setWaypoints = setWaypoints;
+    vm.drawPath = drawPath;
 
     vm.viewName = "Custom";
+    vm.waypoint;
     
     MapService.getLocation();
 
     function changeView(view) {
         vm.viewName = view;
+    }
+
+    function drawPath() {
+        MapService.drawPath();
+    }
+
+    function setWaypoints() {
+        if (vm.waypoint) {
+            MapService.placesSearch(MapService.platform);
+        }
     }
 }]);

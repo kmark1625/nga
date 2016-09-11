@@ -15,7 +15,8 @@
         </div>
         <div style='width: 100%; height: 30px; background-color: black; color:
         white;'>
-            <p class='text-center margin-0'>Leave now</p>
+            <button ng-click='vm.drawPath()' class='text-center margin-0' style='width: 100%;
+            background-color: black;'>Leave now</button>
         </div>
     </div>
 
@@ -28,7 +29,7 @@
     <div ng-if="vm.viewName ==='Waypoint'">
         <img class='img-header' src="/assets/icon-waypoint.png">
         <p class="margin-0 text-center">Add a waypoint</p>
-        <select style='margin-left: 35%; margin-bottom: 7px;'>
+        <select ng-model='vm.waypoint' ng-change='vm.setWaypoints()' style='margin-left: 35%; margin-bottom: 7px;'>
             <option value='grocery'>Grocery Store</option>
             <option value='medical'>Medical Clinic</option>
             <option value='fuel'>Gas Station</option>
@@ -40,7 +41,7 @@
         <p class="margin-0 text-center">Latest updates on severity</p>
     </div>
 
-    <div class='container'>
+    <div class='container' ng-if='vm.viewName !== "Disaster Severity"'>
         <div style='width: 100%; height: 375px' id='mapContainer'></div>
     </div>
     <div class='container'>
